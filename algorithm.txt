@@ -1,0 +1,30 @@
+ALGORITHM: DIJKSTRA'S SHORTEST PATH
+
+Input:
+  A weighted, undirected graph G(V, E), source vertex s, destination vertex t.
+  Every road distance must be positive.
+
+Output:
+  Shortest route from s to t and its total distance, or a no-route message.
+
+Steps:
+1. Create a distance array and initialize every distance to infinity.
+2. Set distance[source] = 0.
+3. Insert (0, source) into a min-priority queue.
+4. While the priority queue is not empty:
+   a. Remove the vertex u having the smallest tentative distance.
+   b. If the removed distance is outdated, skip it.
+   c. For every adjacent vertex v connected by an edge of weight w:
+      i. If distance[u] + w < distance[v]:
+         - Update distance[v].
+         - Set parent[v] = u.
+         - Insert (distance[v], v) into the priority queue.
+5. If destination distance is infinity, report that no route exists.
+6. Otherwise, follow parent pointers from destination to source.
+7. Reverse the collected sequence and display the route and distance.
+
+Time Complexity:
+  O((V + E) log V), using an adjacency list and binary min-heap.
+
+Space Complexity:
+  O(V + E), including graph storage and auxiliary arrays.
